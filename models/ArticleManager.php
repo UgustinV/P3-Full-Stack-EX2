@@ -82,6 +82,15 @@ class ArticleManager extends AbstractEntityManager
         ]);
     }
 
+    public function updateArticleViews(Article $article) : void
+    {
+        $sql = "UPDATE article SET vues = :vues WHERE id = :id";
+        $this->db->query($sql, [
+            'vues' => $article->getVues(),
+            'id' => $article->getId()
+        ]);
+    }
+
     /**
      * Supprime un article.
      * @param int $id : l'id de l'article à supprimer.
