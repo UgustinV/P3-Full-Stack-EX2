@@ -11,8 +11,8 @@
     private string $content = "";
     private ?DateTime $dateCreation = null;
     private ?DateTime $dateUpdate = null;
-
     private ?int $vues = 0;
+    private ?int $commentsCount = 0;
 
     /**
      * Setter pour l'id de l'utilisateur. 
@@ -147,4 +147,22 @@
     {
         return $this->vues;
     }
+
+    /**
+     * Setter pour le nombre de commentaires.
+     * @param int $commentsCount
+     */
+    public function setCommentsCount(int $commentsCount) : void 
+    {
+        $this->commentsCount = $commentsCount;
+    }
+
+    /**
+        * Getter pour le nombre de commentaires.
+        * @return int
+        */
+       public function getCommentsCount() : int 
+       {
+           return $this->commentsCount;
+       }
  }

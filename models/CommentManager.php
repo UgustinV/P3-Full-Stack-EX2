@@ -22,6 +22,19 @@ class CommentManager extends AbstractEntityManager
         return $comments;
     }
 
+    public function getAllCommentsCount() : array
+    {
+        $sql = "SELECT COUNT(*) as count, id_article FROM comment GROUP BY id_article";
+        $result = $this->db->query($sql);
+        $commentsCount = [];
+
+        while ($row = $result->fetch()) {
+            $commentsCount[(int) $row['id_article']] = (int) $row['count'];
+        }
+
+        return $commentsCount;
+    }
+
     /**
      * Récupère un commentaire par son id.
      * @param int $id : l'id du commentaire.
