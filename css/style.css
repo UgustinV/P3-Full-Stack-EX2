@@ -419,6 +419,35 @@ a.info {
     text-align: center;
 }
 
+.adminMonitoring .content {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.adminMonitoring .content>a {
+    color: var(--titleColor);
+    background-color: var(--headerPaleColor);
+    padding: 2px 5px;
+}
+
+.adminMonitoring .comment {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.adminMonitoring .actions {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.adminMonitoring .actions>a {
+    color: white;
+    background-color: var(--titleColor);
+    padding: 2px 5px;
+}
+
 /** 
  * Footer global de la page.
  */

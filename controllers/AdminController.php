@@ -205,4 +205,43 @@ class AdminController {
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
     }
+    /**
+     * Page des commentaires.
+     * @return void
+     */
+    public function showEditComment() : void
+    {
+        $this->checkIfUserIsConnected();
+        $id = Utils::request("id", -1);
+        $commentManager = new CommentManager();
+        $articleManager = new ArticleManager();
+        $article = $articleManager->getArticleById($id);
+        $comments = $commentManager->getAllCommentsByArticleId($id);
+
+        // On affiche la page de modification du commentaire.
+        $view = new View("Édition des commentaires");
+        $view->render("commentsMonitoring", [
+            'comments' => $comments,
+            'article' => $article
+        ]);
+    }
+
+    /**
+     * Suppression d'un commentaire.
+     * @return void
+     */
+    public function deleteComment() : void
+    {
+        $this->checkIfUserIsConnected();
+
+        $id = Utils::request("id", -1);
+
+        // On supprime le commentaire.
+        $commentManager = new CommentManager();
+        $comment = $commentManager->getCommentById($id);
+        $commentManager->deleteComment($comment);
+       
+        // On redirige vers la page d'administration.
+        Utils::redirect("showEditComment&id=" . $comment->getIdArticle());
+    }
 }

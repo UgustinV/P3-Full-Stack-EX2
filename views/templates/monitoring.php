@@ -20,7 +20,7 @@
         <div class="articleLine">
             <div class="title"><?= $article->getTitle() ?></div>
             <div class="content"><?= $article->getVues() ?></div>
-            <div class="content"><?= $article->getCommentsCount() ?></div>
+            <div class="content"><?= $article->getCommentsCount() ?> <a href="index.php?action=showEditComment&id=<?= $article->getId() ?>">Editer</a></div>
             <div class="content"><?= Utils::convertDateToFrenchFormat($article->getDateCreation()) ?></div>
         </div>
     <?php } ?>

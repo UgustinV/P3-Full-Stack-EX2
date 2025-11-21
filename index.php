@@ -78,6 +78,16 @@ try {
             $adminController = new AdminController();
             $adminController->deleteArticle();
             break;
+        
+        case 'showEditComment':
+            $adminController = new AdminController();
+            $adminController->showEditComment();
+            break;
+
+        case 'deleteComment':
+            $adminController = new AdminController();
+            $adminController->deleteComment();
+            break;
 
         default:
             throw new Exception("La page demandée n'existe pas.");
