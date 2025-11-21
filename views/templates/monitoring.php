@@ -8,10 +8,13 @@
 
 <div class="adminMonitoring">
     <div class="monitoringHeader">
-        <div><a href="">Titre</a><img src="" alt=""></div>
-        <div><a href="">Vues</a></div>
-        <div><a href="">Commentaires</a></div>
-        <div><a href="">Date de création</a></div>
+        <?php
+            $newOrder = ($order === 'DESC') ? 'ASC' : 'DESC';
+        ?>
+        <a href="index.php?action=monitoring&sorting=title&order=<?= $sorting === 'title' ? $newOrder : 'DESC' ?>"><div>Titre<?= ($sorting === 'title') ? (($order === 'DESC') ? "<img src='images/sort-bt.svg' alt='desc'/>" : "<img src='images/sort-tb.svg' alt='asc'/>") : "" ?></div></a>
+        <a href="index.php?action=monitoring&sorting=vues&order=<?= $sorting === 'vues' ? $newOrder : 'DESC' ?>"><div>Vues<?= ($sorting === 'vues') ? (($order === 'DESC') ? "<img src='images/sort-bt.svg' alt='desc'/>" : "<img src='images/sort-tb.svg' alt='asc'/>") : "" ?></div></a>
+        <a href="index.php?action=monitoring&sorting=comments_count&order=<?= $sorting === 'comments_count' ? $newOrder : 'DESC' ?>"><div>Commentaires<?= ($sorting === 'comments_count') ? (($order === 'DESC') ? "<img src='images/sort-bt.svg' alt='desc'/>" : "<img src='images/sort-tb.svg' alt='asc'/>") : "" ?></div></a>
+        <a href="index.php?action=monitoring&sorting=date_creation&order=<?= $sorting === 'date_creation' ? $newOrder : 'DESC' ?>"><div>Date de création<?= ($sorting === 'date_creation') ? (($order === 'DESC') ? "<img src='images/sort-bt.svg' alt='desc'/>" : "<img src='images/sort-tb.svg' alt='asc'/>") : "" ?></div></a>
     </div>
     <?php foreach ($articles as $article) { ?>
         <div class="articleLine">

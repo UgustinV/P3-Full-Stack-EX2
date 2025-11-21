@@ -20,6 +20,23 @@ class ArticleManager extends AbstractEntityManager
         }
         return $articles;
     }
+
+    public function getAllSortedArticles(string $sorting = 'date_creation', string $order = 'DESC') : array
+    {
+        $allowedSorts = ['title', 'vuess', 'comments', 'date_creation'];
+        if (!in_array($sorting, $allowedSorts)) {
+            $sorting = 'date_creation';
+        }
+
+        $sql = "SELECT * FROM article ORDER BY " . $sorting . " " . $order;
+        $result = $this->db->query($sql);
+        $articles = [];
+
+        while ($article = $result->fetch()) {
+            $articles[] = new Article($article);
+        }
+        return $articles;
+    }
     
     /**
      * Récupère un article par son id.
@@ -78,7 +95,7 @@ class ArticleManager extends AbstractEntityManager
         $this->db->query($sql, [
             'title' => $article->getTitle(),
             'content' => $article->getContent(),
-            'id' => $article->getId()
+            'id' => $article->getId(),
         ]);
     }
 
@@ -92,6 +109,15 @@ class ArticleManager extends AbstractEntityManager
         $sql = "UPDATE article SET vues = :vues WHERE id = :id";
         $this->db->query($sql, [
             'vues' => $article->getVues(),
+            'id' => $article->getId()
+        ]);
+    }
+
+    public function updateArticleCommentsCount(Article $article) : void
+    {
+        $sql = "UPDATE article SET comments_count = :comments_count WHERE id = :id";
+        $this->db->query($sql, [
+            'comments_count' => $article->getCommentsCount(),
             'id' => $article->getId()
         ]);
     }

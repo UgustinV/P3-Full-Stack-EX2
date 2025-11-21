@@ -34,14 +34,12 @@
     <main>
         <?php 
             if (isset($_SESSION['user'])) {
-                echo '<nav>';
-                if($_GET['action'] === 'admin') {
-                    echo '<a href="index.php?action=admin" class="selected">Edition</a><a href="index.php?action=monitoring">Statistiques</a>';
-                }
-                if($_GET['action'] === 'monitoring') {
-                    echo '<a href="index.php?action=admin">Edition</a><a href="index.php?action=monitoring" class="selected">Statistiques</a>';
-                }
-                echo '</nav>';
+                ?>
+                <nav>
+                    <a href='index.php?action=admin' <?= $_GET['action'] === 'admin' ? "class='selected'" : "" ?>>Edition</a>
+                    <a href='index.php?action=monitoring' <?= $_GET['action'] === 'monitoring' ? "class='selected'" : "" ?>>Statistiques</a>
+                </nav>
+                <?php
             }
         ?>
         <?= $content /* Ici est affiché le contenu réel de la page. */ ?>

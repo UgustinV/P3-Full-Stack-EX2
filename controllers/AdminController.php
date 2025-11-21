@@ -37,7 +37,9 @@ class AdminController {
         // On récupère les articles.
         $articleManager = new ArticleManager();
         $commentManager = new CommentManager();
-        $articles = $articleManager->getAllArticles();
+        $sorting = Utils::request('sorting', 'date_creation');
+        $order = Utils::request('order', 'DESC');
+        $articles = $articleManager->getAllSortedArticles($sorting, $order);
         $commentsCount = $commentManager->getAllCommentsCount();
         foreach ($articles as $article) {
             $article->setCommentsCount($commentsCount[$article->getId()] ?? 0);
@@ -46,7 +48,9 @@ class AdminController {
         // On affiche la page d'administration.
         $view = new View("Monitoring");
         $view->render("monitoring", [
-            'articles' => $articles
+            'articles' => $articles,
+            'sorting' => $sorting,
+            'order' => $order
         ]);
     }
 

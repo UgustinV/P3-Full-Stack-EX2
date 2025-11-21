@@ -368,7 +368,6 @@ a.info {
 }
 
 .monitoringHeader {
-    display: flex;
     font-weight: bold;
     background-color: var(--headerColor);
 }
@@ -379,17 +378,29 @@ a.info {
     flex: 1;
 }
 
-.monitoringHeader > div, .articleLine > div {
+.monitoringHeader img {
+    width: 30px;
+}
+
+.monitoringHeader div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.monitoringHeader a, .articleLine > div {
     flex: 1;
     padding: 20px;
     border: 1px solid var(--backgroundColor);
 }
 
-.monitoringHeader > div {
+.monitoringHeader a {
     border: 1px solid var(--backgroundColor);
 }
 
-.monitoringHeader > div:hover {
+.monitoringHeader a:hover {
     background-color: var(--headerPaleColor);
     cursor: pointer;
 }
@@ -402,7 +413,7 @@ a.info {
     background-color: var(--commentColor);
 }
 
-.adminMonitoring .content, .monitoringHeader div, .adminMonitoring .title {
+.adminMonitoring .content, .monitoringHeader a, .adminMonitoring .title {
     display: flex;
     justify-content: center;
     text-align: center;
